@@ -10,7 +10,7 @@ import plotly.graph_objs as go
 # import plotly.graph_objects as go
 
 
-data = yf.download(tickers='SPY', period='1d', interval='1m')
+data = yf.download(tickers='NIO', period='1d', interval='1m')
 
 # print(data)
 
@@ -40,7 +40,7 @@ fig.add_trace(go.Candlestick(x=data.index,
 
 # Here we Add Titles to our Graph.
 fig.update_layout(
-    title='SPY live share price evolution',
+    title='Live share price evolution',
     yaxis_title='Stock Price (USD per Share)')
 
 # Defining X-Axes
@@ -48,6 +48,7 @@ fig.update_xaxes(
     rangeslider_visible=True,
     rangeselector=dict(
         buttons=list([
+            dict(count=1, label="1m", step="minute", stepmode="backward"),
             dict(count=15, label="15m", step="minute", stepmode="backward"),
             dict(count=45, label="45m", step="minute", stepmode="backward"),
             dict(count=1, label="HTD", step="hour", stepmode="todate"),
