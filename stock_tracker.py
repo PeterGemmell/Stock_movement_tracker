@@ -6,7 +6,9 @@ import pandas as pd
 import yfinance as yf
 
 # Next we import our package for visualising the Data.
-import  plotly.graph_objs as go
+import plotly.graph_objs as go
+# import plotly.graph_objects as go
+
 
 data = yf.download(tickers='SPY', period='1d', interval='1m')
 
@@ -30,10 +32,30 @@ fig.add_trace(go.Scatter(x=data.index, y=data['Lower Band'], line=dict(color='gr
 
 
 # Defining our CandleStick
-fig.add_trace(go.CandleStick(x=data.index,
+fig.add_trace(go.Candlestick(x=data.index,
                 open=data['Open'],
                 high=data['High'],
                 low=data['Low'],
                 close=data['Close'], name = 'market data'))
 
 # Here we Add Titles to our Graph.
+fig.update_layout(
+    title='SPY live share price evolution',
+    yaxis_title='Stock Price (USD per Share)')
+
+# Defining X-Axes
+fig.update_xaxes(
+    rangeslider_visible=True,
+    rangeselector=dict(
+        buttons=list([
+            dict(count=15, label="15m", step="minute", stepmode="backward"),
+            dict(count=45, label="45m", step="minute", stepmode="backward"),
+            dict(count=1, label="HTD", step="hour", stepmode="todate"),
+            dict(count=3, label="3h", step="hour", stepmode="backward"),
+            dict(step="all")
+        ])
+    )
+)
+
+# Finally we show our results
+fig.show()
