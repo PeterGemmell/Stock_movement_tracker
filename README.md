@@ -8,7 +8,7 @@
 
 * Run pipenv shell
 
-* To change stock symbol simply open Open in editor of your choice and change the ticker symbol on line 13.
+* To change stock symbol simply open in editor of your choice and change the ticker symbol on line 13.
 
 * Type the command python3 stock_tracker.py
 
